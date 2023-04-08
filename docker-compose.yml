@@ -1,7 +1,7 @@
 version: "2"
 volumes:
   db-data:
-    externals: false
+    external: false
 
 services:
   cache:
@@ -21,8 +21,7 @@ services:
     volumes:
       - .:/usr/src/app
     command: bundle exec rake jobs:work
-    depends_on:
-      -db
+
 
   app:
     env_file: .env 
@@ -32,5 +31,9 @@ services:
     ports:
       - "8080:8080"
     command: bundle exec rake jobs:work
-    depends_on:
-      -db
+    
+    environment:
+      POSTERS_USER: root
+      POSTERS_NAME: noteapp
+      POSTERS_PASSWORD: password
+      POSTERS_HOST: db
