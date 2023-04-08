@@ -6,6 +6,9 @@
 #
 default: &default
   adapter: sqlite3
+  host: <%= ENV["POSTERS_HOST"] %>
+  username: <%= ENV["POSTERS_USER"] %>
+  password: <%= ENV["POSTERS_PASSWORD"] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
